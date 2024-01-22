@@ -487,7 +487,7 @@ final class Auth extends UserManager {
 	 * @param int $duration the duration in seconds
 	 * @throws AuthError if an internal problem occurred (do *not* catch)
 	 */
-	private function createRememberDirective($userId, $duration) {
+	public function createRememberDirective($userId, $duration) {
 		$selector = self::createRandomString(24);
 		$token = self::createRandomString(32);
 		$tokenHashed = \password_hash($token, \PASSWORD_DEFAULT);
