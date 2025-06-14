@@ -17,7 +17,7 @@ use Delight\Db\Throwable\Error;
 use Delight\Db\Throwable\IntegrityConstraintViolationException;
 
 /** Component that provides all features and utilities for secure authentication of individual users */
-final class Auth extends UserManager {
+class Auth extends UserManager {
 
 	const COOKIE_PREFIXES = [ Cookie::PREFIX_SECURE, Cookie::PREFIX_HOST ];
 	const COOKIE_CONTENT_SEPARATOR = '~';
