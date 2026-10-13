@@ -225,7 +225,7 @@ class Auth extends UserManager {
 	 * @see confirmEmail
 	 * @see confirmEmailAndSignIn
 	 */
-	public function register($email, $password, $username = null, callable $callback = null) {
+	public function register($email, $password, $username = null, ?callable $callback = null) {
 		$this->throttle([ 'enumerateUsers', $this->getIpAddress() ], 1, (60 * 60), 75);
 		$this->throttle([ 'createNewAccount', $this->getIpAddress() ], 1, (60 * 60 * 12), 5, true);
 
@@ -266,7 +266,7 @@ class Auth extends UserManager {
 	 * @see confirmEmail
 	 * @see confirmEmailAndSignIn
 	 */
-	public function registerWithUniqueUsername($email, $password, $username = null, callable $callback = null) {
+	public function registerWithUniqueUsername($email, $password, $username = null, ?callable $callback = null) {
 		$this->throttle([ 'enumerateUsers', $this->getIpAddress() ], 1, (60 * 60), 75);
 		$this->throttle([ 'createNewAccount', $this->getIpAddress() ], 1, (60 * 60 * 12), 5, true);
 
@@ -291,7 +291,7 @@ class Auth extends UserManager {
 	 * @throws TooManyRequestsException if the number of allowed attempts/requests has been exceeded
 	 * @throws AuthError if an internal problem occurred (do *not* catch)
 	 */
-	public function login($email, $password, $rememberDuration = null, callable $onBeforeSuccess = null) {
+	public function login($email, $password, $rememberDuration = null, ?callable $onBeforeSuccess = null) {
 		$this->throttle([ 'attemptToLogin', 'email', $email ], 500, (60 * 60 * 24), null, true);
 
 		$this->authenticateUserInternal($password, $email, null, $rememberDuration, $onBeforeSuccess);
@@ -316,7 +316,7 @@ class Auth extends UserManager {
 	 * @throws TooManyRequestsException if the number of allowed attempts/requests has been exceeded
 	 * @throws AuthError if an internal problem occurred (do *not* catch)
 	 */
-	public function loginWithUsername($username, $password, $rememberDuration = null, callable $onBeforeSuccess = null) {
+	public function loginWithUsername($username, $password, $rememberDuration = null, ?callable $onBeforeSuccess = null) {
 		$this->throttle([ 'attemptToLogin', 'username', $username ], 500, (60 * 60 * 24), null, true);
 
 		$this->authenticateUserInternal($password, null, $username, $rememberDuration, $onBeforeSuccess);
@@ -1032,7 +1032,7 @@ class Auth extends UserManager {
 	 * @throws TooManyRequestsException if the number of allowed attempts/requests has been exceeded
 	 * @throws AuthError if an internal problem occurred (do *not* catch)
 	 */
-	private function authenticateUserInternal($password, $email = null, $username = null, $rememberDuration = null, callable $onBeforeSuccess = null) {
+	private function authenticateUserInternal($password, $email = null, $username = null, $rememberDuration = null, ?callable $onBeforeSuccess = null) {
 		$this->throttle([ 'enumerateUsers', $this->getIpAddress() ], 1, (60 * 60), 75);
 		$this->throttle([ 'attemptToLogin', $this->getIpAddress() ], 4, (60 * 60), 5, true);
 

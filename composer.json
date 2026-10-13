@@ -2,7 +2,7 @@
 	"name": "delight-im/auth",
 	"description": "Authentication for PHP. Simple, lightweight and secure.",
 	"require": {
-		"php": ">=5.6.0",
+		"php": ">=7.1.0",
 		"ext-openssl": "*",
 		"delight-im/base64": "^1.0",
 		"delight-im/cookie": "^3.1",
