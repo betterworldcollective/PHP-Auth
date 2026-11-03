@@ -1092,10 +1092,10 @@ class Auth extends UserManager {
 				else {
 					$this->throttle([ 'attemptToLogin', $this->getIpAddress() ], 4, (60 * 60), 5, false);
 
-					if (isset($email)) {
+					if (!empty($email)) {
 						$this->throttle([ 'attemptToLogin', 'email', $email ], 500, (60 * 60 * 24), null, false);
 					}
-					elseif (isset($username)) {
+					elseif (!empty($username)) {
 						$this->throttle([ 'attemptToLogin', 'username', $username ], 500, (60 * 60 * 24), null, false);
 					}
 
@@ -1109,10 +1109,10 @@ class Auth extends UserManager {
 		else {
 			$this->throttle([ 'attemptToLogin', $this->getIpAddress() ], 4, (60 * 60), 5, false);
 
-			if (isset($email)) {
+			if (!empty($email)) {
 				$this->throttle([ 'attemptToLogin', 'email', $email ], 500, (60 * 60 * 24), null, false);
 			}
-			elseif (isset($username)) {
+			elseif (!empty($username)) {
 				$this->throttle([ 'attemptToLogin', 'username', $username ], 500, (60 * 60 * 24), null, false);
 			}
 
